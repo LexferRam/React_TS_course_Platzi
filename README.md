@@ -32,3 +32,24 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+---
+### You need to change your permissions for this file.
+
+You can see the permissions for this file running the command:
+
+```cmd
+ls -@l file
+```
+
+To change the permissions you can run
+
+```cmd
+sudo chown -v username directory
+```
+
+If you want to change permissions on a whole directory run:
+
+```cmd
+sudo chown -Rv username directory
+```
