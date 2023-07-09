@@ -4,12 +4,47 @@
  */
 // import type { FunctionComponent, FC } from 'react'
 
-interface Props {
-    image: string;
+import { useEffect, useRef, useState } from "react";
+import type { ImgHTMLAttributes } from 'react';
+
+interface Props extends ImgHTMLAttributes<HTMLImageElement> {
+    src: string;
 }
 
-const RandomFox = ({image}:Props): JSX.Element => {
-  return <img width={320} height='auto' src={image} className="rounded"/>
+const LazyImage = ({ src, ...imgProps }: Props): JSX.Element => {
+
+  const node = useRef<HTMLImageElement>(null)
+  const [currentSrc, setCurrentSrc] = useState("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4=")
+
+  useEffect(() => {
+    //?? Nuevo observador
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            // onIntersection
+            if (entry.isIntersecting){
+                setCurrentSrc(src)
+            }
+        })
+    })
+
+    //?? observe node
+    if(node.current) {
+        observer.observe(node.current)
+    }
+
+    //?? desconectar
+    return () => {
+        observer.disconnect()
+    }
+  },[src])
+
+  return( 
+    <img 
+        ref={node} 
+        src={currentSrc} 
+        {...imgProps}
+    />
+  )
 }
 
 // const RandomFox2: FunctionComponent = () => {
@@ -20,4 +55,4 @@ const RandomFox = ({image}:Props): JSX.Element => {
 //   return <img />
 // }
 
-export default RandomFox
+export default LazyImage
