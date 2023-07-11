@@ -13,6 +13,23 @@ interface Props extends ImgHTMLAttributes<HTMLImageElement> {
 
 const LazyImage = ({ src, ...imgProps }: Props): JSX.Element => {
 
+    // create a function with reduce that receive a array and return an object where the key is the value of the array and the value is how many times the value is repeated in the array, please use typescript
+    const countItems = (array: Array<string>): Record<string, number> => {
+        return array.reduce((acc : Record<string, number>, item) => {
+            // exite la propiedad en el objeto
+            if(acc[item]){
+                // se incrementa en 1 el valor de la propiedad
+                acc[item] += 1
+            } else {
+                // se crea la propiedad con valor 1
+                acc[item] = 1
+            }
+            return acc
+        }, {})
+    } 
+
+
+  //?? Crea una referencia mutable que se puede asignar a cualquier elemento en el DOM
   const node = useRef<HTMLImageElement>(null)
   const [currentSrc, setCurrentSrc] = useState("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4=")
 
