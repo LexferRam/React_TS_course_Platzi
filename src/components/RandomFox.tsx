@@ -14,6 +14,17 @@ interface Props extends ImgHTMLAttributes<HTMLImageElement> {
 const LazyImage = ({ src, ...imgProps }: Props): JSX.Element => {
 
     // create a function with reduce that receive a array and return an object where the key is the value of the array and the value is how many times the value is repeated in the array, please use typescript
+    //document the next function with JSdoc
+    /**
+     *  @param {Array<string>} array - array of strings
+     * @returns {Record<string, number>} - object with the count of each item in the array
+     * 
+     * @example
+     * const array = ['a','b','a','c','b','a']
+     * const result = countItems(array)
+     * console.log(result) // {a:3, b:2, c:1}
+     *  
+    */
     const countItems = (array: Array<string>): Record<string, number> => {
         return array.reduce((acc : Record<string, number>, item) => {
             // exite la propiedad en el objeto
