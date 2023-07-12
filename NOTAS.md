@@ -32,7 +32,11 @@ de esta forma teendremos acceso a todas las propiedades y tipado del objeto **ev
 ```
 
 ### Componentes (genéricos) que extienden elementos del DOM.
+Cuando queremos agregarle tipos a los props de un componente custom genérico debemos extender de un elemento del DOM para que acepte por defecto los atributos de éste elemento sin tener que agregarlos manualmente en la interfaz de nuestro componente
 
+**Para ver el tipo que necesitamos para extender de un elemento del DOM debemos hacer hover sobre el elemento en el JSX y ver el tipado que tiene, ya que éste tipo es el que usaremos para extender la interfaz del prop de nuestro componente, finalmente se debe hacer un destructuring con el spread operator y pasarlo al componente**
+
+```js
 
 ### Creando tipos propios para la aplicación
 
