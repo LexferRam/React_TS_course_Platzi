@@ -2,6 +2,7 @@
 import { useState } from "react";
 import type { MouseEventHandler } from 'react'
 import LazyImage from "@/components/RandomFox";
+import App2 from "@/context/App2";
 
 
 function generateUniqueId(): string {
@@ -40,9 +41,8 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1 className="text-3xl font-bold underline">Hello Platzi</h1>
       <button onClick={addNewFox}>Add new fox</button>
-      {images.map((image,index) => (
+       {images.map((image,index) => (
         <div key={index} className="p-4">
           <LazyImage
            src={image.url} 
@@ -52,6 +52,9 @@ export default function Home() {
           />
         </div>
       ))}
+
+      <h2>Virtualized List with useReducer hook</h2>
+      <App2 />
     </main>
   )
 }
